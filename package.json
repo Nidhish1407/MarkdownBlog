@@ -2,6 +2,9 @@
   "name": "markdownblog",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "14.17.3"
+  },
   "main": "index.js",
   "scripts": {
     "start": "nodemon app.js"
