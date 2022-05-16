@@ -3,10 +3,13 @@ const mongoose = require('mongoose');
 const articleRouter = require('./routes/article');
 const Article = require('./models/article');
 const methodOverride = require('method-override');
+require('dotenv').config();
 const app = express();
 
 
-mongoose.connect('mongodb://localhost/blog')
+mongoose.connect(process.env.MONGO_URI)
+.catch(err=>console.log(err)); 
+
 
 app.use(express.urlencoded({ extended: false}))
 app.set('view engine','ejs');
@@ -37,10 +40,9 @@ app.get('/',async (req,res)=>{
     res.render('articles/index',{articles});
 });
 
-const port = 80;
-const host = '127.0.0.1'
+const port = 3000;
 
 //Start server
 app.listen(port,()=>{
-    console.log(`The application running at http://${host}:${port}`);
+    console.log(`The application running at port ${port}`);
 });  
